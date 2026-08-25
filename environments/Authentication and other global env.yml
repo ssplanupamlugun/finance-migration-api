@@ -1,0 +1,11 @@
+name: Authentication and other global env
+variables:
+  - name: auth_token
+    value: 58906b50-6ba8-465f-aa75-ac2d27552e8a
+    description: ""
+  - name: tenantId
+    value: hr.gurugram
+    description: ""
+  - name: base_url
+    value: http://localhost:9090
+    description: ""

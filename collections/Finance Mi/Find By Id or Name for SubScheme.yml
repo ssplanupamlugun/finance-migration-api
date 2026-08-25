@@ -1,0 +1,26 @@
+info:
+  name: Find By Id or Name for SubScheme
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{base_url}}/services/EGF/common/subscheme?tenantId={{tenantId}}&auth_token={{auth_token}}&name=subscheme Amrut"
+  params:
+    - name: tenantId
+      value: "{{tenantId}}"
+      type: query
+    - name: auth_token
+      value: "{{auth_token}}"
+      type: query
+    - name: name
+      value: subscheme Amrut
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

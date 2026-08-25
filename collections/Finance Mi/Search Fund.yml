@@ -1,0 +1,42 @@
+info:
+  name: Search Fund
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{base_url}}/services/EGF/funds/_search?auth_token={{auth_token}}&tenantId={{tenantId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+  params:
+    - name: auth_token
+      value: "{{auth_token}}"
+      type: query
+    - name: tenantId
+      value: "{{tenantId}}"
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "RequestInfo": {
+          "apiId": "Finance Data Migration",
+          "action": "CREATE",
+          "authToken": null
+        },
+        "tenantId": null,
+        "name": "Municipal Fund",
+        "active": true,
+        "pageSize": 20,
+        "offset": 0,
+        "sortBy": "name"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

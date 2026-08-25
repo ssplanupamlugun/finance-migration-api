@@ -4,6 +4,8 @@ info:
   type: workspace
 
 collections:
+  - name: "Finance Mi"
+    path: "collections/Finance Mi"
 
 specs:
 
