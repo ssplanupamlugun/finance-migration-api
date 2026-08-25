@@ -6,6 +6,8 @@ info:
 collections:
   - name: "Finance Mi"
     path: "collections/Finance Mi"
+  - name: "Master"
+    path: "collections/Master"
 
 specs:
 
