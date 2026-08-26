@@ -77,3 +77,105 @@ settings:
   followRedirects: true
   maxRedirects: 5
   forwardAuthorizationHeader: false
+
+docs: |
+  # API Responses
+
+  ## Success Response
+
+  **HTTP Status:** `201 Created`
+
+  ```json
+  {
+    "responseInfo": {
+      "apiId": "Finance Data Migration",
+      "ver": null,
+      "ts": null,
+      "resMsgId": null,
+      "msgId": null,
+      "status": "SUCCESSFUL"
+    },
+    "success": true,
+    "message": "Work Order created successfully",
+    "timestamp": 1787759908697,
+    "data": {
+      "id": 969,
+      "orderNumber": "WO/001/26-27/0000969",
+      "name": "Road Construction Work Order",
+      "orderDate": 1787682600000,
+      "contractorId": 919,
+      "orderValue": 475000.00,
+      "advancePayable": 50000.00,
+      "description": "Construction and development of internal road in Ward No. 12",
+      "fundId": 1,
+      "department": "DEPT_1",
+      "schemeId": null,
+      "subSchemeId": null,
+      "sanctionNumber": "SAN/2026/00125",
+      "sanctionDate": 1787164200000,
+      "emdAmount": 25000.00,
+      "bgAmount": 100000.00,
+      "estimatedBudget": 500000.00,
+      "apbg": 450000.00,
+      "active": true,
+      "departmentName": "Account Branch",
+      "editAllFields": null,
+      "orderType": "Construction",
+      "workId": 1,
+      "workCode": "WC/2026/0001",
+      "workItems": [
+        {
+          "id": 25229,
+          "itemCode": "ROAD-MATERIAL-001",
+          "unit": "Cum",
+          "unitRate": 2500.00,
+          "quantity": 100.00,
+          "gstRate": 18,
+          "unitValueWithGst": 2950.00,
+          "amount": 295000.00,
+          "glcodeid": null,
+          "orderNumber": "WO/001/26-27/0000969"
+        },
+        {
+          "id": 25230,
+          "itemCode": "LABOUR-001",
+          "unit": "Per Day(Day)",
+          "unitRate": 1500.00,
+          "quantity": 50.00,
+          "gstRate": 18,
+          "unitValueWithGst": 1770.00,
+          "amount": 88500.00,
+          "glcodeid": null,
+          "orderNumber": "WO/001/26-27/0000969"
+        }
+      ]
+    }
+  }
+  ```
+
+  ## Error Response
+
+  **HTTP Status:** `400 Bad Request`
+
+  ```json
+  {
+    "ResponseInfo": {
+      "apiId": null,
+      "ver": null,
+      "ts": "Wed Aug 26 21:24:33 IST 2026",
+      "resMsgId": null,
+      "msgId": null,
+      "status": "400"
+    },
+    "Errors": [
+      {
+        "code": "VALIDATION_ERROR",
+        "message": "<error message>",
+        "description": "<error description>",
+        "params": null
+      }
+    ]
+  }
+  ```
+
+  > The `Errors` array can contain one or more validation errors depending on the request.
