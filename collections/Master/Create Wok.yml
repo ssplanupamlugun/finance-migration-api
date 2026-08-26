@@ -43,3 +43,61 @@ settings:
   followRedirects: true
   maxRedirects: 5
   forwardAuthorizationHeader: false
+
+docs: |
+  # API Responses
+
+  ## Success Response
+
+  ```json
+  {
+    "responseInfo": {
+      "apiId": "Finance Data Migration",
+      "ver": null,
+      "ts": null,
+      "resMsgId": null,
+      "msgId": null,
+      "status": "SUCCESSFUL"
+    },
+    "success": true,
+    "message": "Work created successfully",
+    "timestamp": 1787760795671,
+    "data": {
+      "id": 1024,
+      "workCode": "WC/2026/1024",
+      "estimateId": null,
+      "workName": "Road Repair - Sector 14 Main Road",
+      "workType": "Repair & Maintenance",
+      "fundId": 1,
+      "startDate": 1767744000000,
+      "endDate": 1769817600000,
+      "active": true,
+      "estimateValue": 1250000,
+      "estimateUnit": "RUPEE",
+      "displayName": "Road Repair - Sector 14 Main Road - WC/2026/1024"
+    }
+  }
+  ```
+
+  ## Error Response
+
+  ```json
+  {
+    "ResponseInfo": {
+      "apiId": null,
+      "ver": null,
+      "ts": "Wed Aug 26 21:43:57 IST 2026",
+      "resMsgId": null,
+      "msgId": null,
+      "status": "404"
+    },
+    "Errors": [
+      {
+        "code": "NOT_FOUND",
+        "message": "Fund not found: ww",
+        "description": "Fund not found: ww",
+        "params": null
+      }
+    ]
+  }
+  ```
