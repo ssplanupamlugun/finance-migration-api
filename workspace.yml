@@ -4,8 +4,6 @@ info:
   type: workspace
 
 collections:
-  - name: "Finance Mi"
-    path: "collections/Finance Mi"
   - name: "Master"
     path: "collections/Master"
 
