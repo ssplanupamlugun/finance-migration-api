@@ -1,0 +1,79 @@
+info:
+  name: Create Work Order
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{base_url}}/services/EGF/rest/workorder/create?auth_token={{auth_token}}&tenantId={{tenantId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+  params:
+    - name: auth_token
+      value: "{{auth_token}}"
+      type: query
+    - name: tenantId
+      value: "{{tenantId}}"
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "RequestInfo": {
+          "apiId": "Finance Data Migration",
+          "action": "CREATE",
+          "authToken": "{{auth_token}}"
+        },
+        "tenantId": "{{tenantId}}",
+        "request": {
+          "name": "Road Construction Work Order",
+          "orderDate": "2026-08-26T00:00:00.000+05:30",
+          "contractorName": "ANAND CONTRACTOR",
+          "advancePayable": 50000.00,
+          "description": "Construction and development of internal road in Ward No. 12",
+          "fundName": "Municipal Fund",
+          "departmentName": "Account Branch",
+          "schemeName": "",
+          "subSchemeName": "",
+          "sanctionNumber": "SAN/2026/00125",
+          "sanctionDate": "2026-08-20T00:00:00.000+05:30",
+          "emdAmount": 25000.00,
+          "bgAmount": 100000.00,
+          "estimatedBudget": 500000.00,
+          "apbg": 450000.00,
+          "active": true,
+          "orderType": "Construction",
+          "workName": "Construction of IPB street ",
+          "workCode": "WC/2026/0001",
+          "orderValue": 475000.00,
+          "workItems": [
+            {
+              "itemCode": "ROAD-MATERIAL-001",
+              "unit": "Cum",
+              "unitRate": 2500.00,
+              "quantity": 100.00,
+              "gstRate": 18,
+              "unitValueWithGst": 2950.00,
+              "amount": 295000.00
+            },
+            {
+              "itemCode": "LABOUR-001",
+              "unit": "Per Day(Day)",
+              "unitRate": 1500.00,
+              "quantity": 50.00,
+              "gstRate": 18,
+              "unitValueWithGst": 1770.00,
+              "amount": 88500.00
+            }
+          ]
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
