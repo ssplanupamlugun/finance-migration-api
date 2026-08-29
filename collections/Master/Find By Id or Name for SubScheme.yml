@@ -4,8 +4,11 @@ info:
   seq: 1
 
 http:
-  method: GET
-  url: "{{base_url}}/services/EGF/common/subscheme?tenantId={{tenantId}}&auth_token={{auth_token}}&name=subscheme Amrut"
+  method: POST
+  url: "{{base_url}}/services/EGF/subscheme?tenantId={{tenantId}}&auth_token={{auth_token}}&name=Sub AMRUT"
+  headers:
+    - name: Content-Type
+      value: application/json
   params:
     - name: tenantId
       value: "{{tenantId}}"
@@ -14,8 +17,18 @@ http:
       value: "{{auth_token}}"
       type: query
     - name: name
-      value: subscheme Amrut
+      value: Sub AMRUT
       type: query
+  body:
+    type: json
+    data: |-
+      {
+        "RequestInfo": {
+          "apiId": "Finance Data Migration",
+          "action": "VIEW",
+          "authToken": "{{auth_token}}"
+        }
+      }
   auth: inherit
 
 settings:
@@ -26,64 +39,77 @@ settings:
   forwardAuthorizationHeader: false
 
 docs: |
+  
+  # Sub Scheme API Response
+
   ## Success Response
 
   ```json
   {
-    "id": 2,
-    "code": "00001",
-    "name": "Sub AMRUT",
-    "validFrom": 1787682600000,
-    "validTo": 1798741800000,
-    "isActive": true,
-    "schemeId": 1,
-    "schemeCode": "00001",
-    "schemeName": "AMRUT",
-    "departmentId": 1,
-    "departmentName": "Accounts Branch",
-    "loanCategory": "HOUSING",
-    "initialEstimateAmount": 5000000,
-    "councilLoanProposalNumber": "CLP-2025-003",
-    "councilLoanProposalDate": 1787682600000,
-    "councilAdminSanctionNumber": "CAS-2025-020",
-    "councilAdminSanctionDate": 1787682600000,
-    "govtLoanProposalNumber": "GLP-2025-1010",
-    "govtLoanProposalDate": 1787682600000,
-    "govtAdminSanctionNumber": "GAS-2025-2010",
-    "govtAdminSanctionDate": 1787682600000,
-    "createdDate": 1787762019157,
-    "createdBy": 1903,
-    "lastModifiedBy": null,
-    "lastModifiedDate": 1787762019157
+    "responseInfo": {
+      "apiId": "Finance Data Migration",
+      "ver": null,
+      "ts": null,
+      "resMsgId": null,
+      "msgId": null,
+      "status": "SUCCESSFUL"
+    },
+    "success": true,
+    "message": "Sub Scheme fetched successfully",
+    "timestamp": 1787986493383,
+    "data": {
+      "id": 2,
+      "code": "00001",
+      "name": "Sub AMRUT",
+      "validFrom": 1787682600000,
+      "validTo": 1798741800000,
+      "isActive": true,
+      "schemeId": 1,
+      "schemeCode": "00001",
+      "schemeName": "AMRUT",
+      "departmentId": 1,
+      "departmentName": "Accounts Branch",
+      "loanCategory": "HOUSING",
+      "initialEstimateAmount": 5000000,
+      "councilLoanProposalNumber": "CLP-2025-003",
+      "councilLoanProposalDate": 1787682600000,
+      "councilAdminSanctionNumber": "CAS-2025-020",
+      "councilAdminSanctionDate": 1787682600000,
+      "govtLoanProposalNumber": "GLP-2025-1010",
+      "govtLoanProposalDate": 1787682600000,
+      "govtAdminSanctionNumber": "GAS-2025-2010",
+      "govtAdminSanctionDate": 1787682600000,
+      "createdDate": 1787762019157,
+      "createdBy": 1903,
+      "lastModifiedBy": null,
+      "lastModifiedDate": 1787762019157
+    }
   }
-  ```
+  ````
 
   ## Error Response
 
-  ```html
-  <!DOCTYPE html>
-  <html lang="en">
-      <head>
-          <meta charset="utf-8">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-          <meta name="description" content="eGov Urban Portal"/>
-          <meta name="author" content=""/>
-          <title>eGov Urban Portal</title>
-      </head>
-      <body>
-          <div class="page-error-404">
-              <div class="error-text">
-                  <div class="alert alert-danger" role="alert">
-                      <i class="fa fa-exclamation-triangle error-symbol"></i>
-                      <hr/>
-                      <p style="color:#000;font-size:17px">
-                          Your request cannot be processed.
-                      </p>
-                      <hr/>
-                  </div>
-              </div>
-          </div>
-      </body>
-  </html>
+  **HTTP Status:** `404 Not Found`
+
+  ```json
+  {
+    "ResponseInfo": {
+      "apiId": null,
+      "ver": null,
+      "ts": "Sat Aug 29 12:25:54 IST 2026",
+      "resMsgId": null,
+      "msgId": null,
+      "status": "404"
+    },
+    "Errors": [
+      {
+        "code": "NOT_FOUND",
+        "message": "SubScheme not found",
+        "description": "SubScheme not found",
+        "params": null
+      }
+    ]
+  }
+  ```
+
   ```

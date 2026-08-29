@@ -1,0 +1,112 @@
+info:
+  name: Get Work Order by Wok order Number
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{base_url}}/services/EGF/rest/workorder/?tenantId={{tenantId}}&auth_token={{auth_token}}&orderNumber=WO/001/26-27/00001226"
+  headers:
+    - name: Content-Type
+      value: application/json
+  params:
+    - name: tenantId
+      value: "{{tenantId}}"
+      type: query
+    - name: auth_token
+      value: "{{auth_token}}"
+      type: query
+    - name: orderNumber
+      value: WO/001/26-27/00001226
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "RequestInfo": {
+          "apiId": "Finance Data Migration",
+          "action": "VIEW",
+          "authToken": "{{auth_token}}"
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: |
+  # Work Order Fetch API
+
+  ## Success Response
+
+  ```json
+  {
+    "responseInfo": {
+      "apiId": "Finance Data Migration",
+      "ver": null,
+      "ts": null,
+      "resMsgId": null,
+      "msgId": null,
+      "status": "SUCCESSFUL"
+    },
+    "success": true,
+    "message": "Work Order fetched successfully",
+    "timestamp": 1787986414375,
+    "data": {
+      "id": 1226,
+      "orderNumber": "WO/001/26-27/00001226",
+      "name": "Providing and laying 80mm t",
+      "orderDate": 1787907002436,
+      "contractorId": 1159,
+      "orderValue": 923545.95,
+      "advancePayable": null,
+      "description": "Providing and laying 80mm thick interlocking tiles with Raising of drain type Ist at Sanjeev Jain wali gali, Jawahar Colony in ward no. 8, NIT Faridabad.",
+      "fundId": 1,
+      "department": "DEPT_5",
+      "schemeId": null,
+      "subSchemeId": null,
+      "sanctionNumber": "HEWP/FY2024-25/T-94392",
+      "sanctionDate": 1735237800000,
+      "emdAmount": 15700.00,
+      "bgAmount": null,
+      "estimatedBudget": null,
+      "apbg": null,
+      "active": true,
+      "departmentName": null,
+      "editAllFields": null,
+      "orderType": "Construction",
+      "workId": 1316,
+      "workCode": "WC/2026/1311",
+      "workItems": []
+    }
+  }
+  ````
+
+  ## Error Response
+
+  **HTTP Status:** `404 Not Found`
+
+  ```json
+  {
+    "ResponseInfo": {
+      "apiId": null,
+      "ver": null,
+      "ts": "Sat Aug 29 12:31:25 IST 2026",
+      "resMsgId": null,
+      "msgId": null,
+      "status": "404"
+    },
+    "Errors": [
+      {
+        "code": "NOT_FOUND",
+        "message": "Work Order not found: Work Order Number => WO/001/26-27/00001226ss",
+        "description": "Work Order not found: Work Order Number => WO/001/26-27/00001226ss",
+        "params": null
+      }
+    ]
+  }
+  ```
