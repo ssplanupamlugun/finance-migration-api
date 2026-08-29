@@ -1,0 +1,165 @@
+info:
+  name: Create Purchase Order
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{base_url}}/services/EGF/rest/purchaseorder/create?auth_token={{auth_token}}&tenantId={{tenantId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+  params:
+    - name: auth_token
+      value: "{{auth_token}}"
+      type: query
+    - name: tenantId
+      value: "{{tenantId}}"
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "RequestInfo": {
+          "apiId": "Finance Data Migration",
+          "action": "CREATE",
+          "authToken": "{{auth_token}}"
+        },
+        "tenantId": "{{tenantId}}",
+        "request": {
+          "name": "Purchase Order for Office Supplies",
+          "orderDate": "2026-08-29T00:00:00.000+05:30",
+          "supplierName": "ANAND",
+          "orderValue": 118000.00,
+          "advancePayable": 20000.00,
+          "description": "Purchase of office stationery and computer accessories",
+          "fundName": "Municipal Fund",
+          "departmentName": "Account Branch",
+          "schemeName": null,
+          "subSchemeName": null,
+          "sanctionNumber": "SAN/2026/00125",
+          "sanctionDate": "2026-08-25T00:00:00.000+05:30",
+          "purchaseItems": [
+            {
+              "itemCode": "LAPTOP-DELL-001",
+              "unit": "Nos",
+              "unitRate": 50000.00,
+              "quantity": 2,
+              "gstRate": 18,
+              "unitValueWithGst": 59000.00,
+              "amount": 118000.00,
+              "glcodeid": 4101001
+            },
+            {
+              "itemCode": "PRINTER-HP-001",
+              "unit": "Nos",
+              "unitRate": 25000.00,
+              "quantity": 1,
+              "gstRate": 18,
+              "unitValueWithGst": 29500.00,
+              "amount": 29500.00,
+              "glcodeid": 4101002
+            }
+          ]
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: |
+  # Purchase Order API Responses
+
+  ## Success Response
+
+  ```json
+  {
+    "responseInfo": {
+      "apiId": "Finance Data Migration",
+      "ver": null,
+      "ts": null,
+      "resMsgId": null,
+      "msgId": null,
+      "status": "SUCCESSFUL"
+    },
+    "success": true,
+    "message": "Purchase Order created successfully",
+    "timestamp": 1788002854815,
+    "data": {
+      "id": 5,
+      "orderNumber": "PO/001/26-27/00005",
+      "name": "Purchase Order for Office Supplies",
+      "orderDate": 1787941800000,
+      "supplierId": 2,
+      "supplierName": "ANAND",
+      "orderValue": 118000.00,
+      "advancePayable": 20000.00,
+      "description": "Purchase of office stationery and computer accessories",
+      "fundId": 1,
+      "fundName": "Municipal Fund",
+      "department": "DEPT_1",
+      "schemeId": null,
+      "schemeName": null,
+      "subScheme": null,
+      "sanctionNumber": "SAN/2026/00125",
+      "sanctionDate": 1787596200000,
+      "active": true,
+      "departmentName": null,
+      "editAllFields": null,
+      "purchaseItems": [
+        {
+          "id": 10,
+          "itemCode": "LAPTOP-DELL-001",
+          "unit": "Nos",
+          "unitRate": 50000.00,
+          "quantity": 2,
+          "gstRate": 18,
+          "unitValueWithGst": 59000.00,
+          "amount": 118000.00,
+          "glcodeid": 4101001,
+          "orderNumber": "PO/001/26-27/00005"
+        },
+        {
+          "id": 11,
+          "itemCode": "PRINTER-HP-001",
+          "unit": "Nos",
+          "unitRate": 25000.00,
+          "quantity": 1,
+          "gstRate": 18,
+          "unitValueWithGst": 29500.00,
+          "amount": 29500.00,
+          "glcodeid": 4101002,
+          "orderNumber": "PO/001/26-27/00005"
+        }
+      ]
+    }
+  }
+  ```
+
+  ## Error Response
+
+  ```json
+  {
+    "ResponseInfo": {
+      "apiId": null,
+      "ver": null,
+      "ts": "Sat Aug 29 16:58:26 IST 2026",
+      "resMsgId": null,
+      "msgId": null,
+      "status": "400"
+    },
+    "Errors": [
+      {
+        "code": "VALIDATION_ERROR",
+        "message": "Department Name is required",
+        "description": "Department Name is required",
+        "params": null
+      }
+    ]
+  }
+  ```
