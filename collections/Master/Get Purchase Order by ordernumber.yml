@@ -1,0 +1,39 @@
+info:
+  name: Get Purchase Order by ordernumber
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{base_url}}/services/EGF/rest/purchaseorder/?tenantId={{tenantId}}&auth_token={{auth_token}}&orderNumber=PO/001/26-27/00008"
+  headers:
+    - name: Content-Type
+      value: application/json
+  params:
+    - name: tenantId
+      value: "{{tenantId}}"
+      type: query
+    - name: auth_token
+      value: "{{auth_token}}"
+      type: query
+    - name: orderNumber
+      value: PO/001/26-27/00008
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "RequestInfo": {
+          "apiId": "Finance Data Migration",
+          "action": "VIEW",
+          "authToken": "{{auth_token}}"
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
