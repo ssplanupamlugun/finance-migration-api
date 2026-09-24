@@ -1,7 +1,7 @@
 name: Authentication and other global env
 variables:
   - name: auth_token
-    value: e58c660d-190f-4206-afb9-720876ab97fa
+    value: token
     description: ""
   - name: tenantId
     value: hr.gurugram
