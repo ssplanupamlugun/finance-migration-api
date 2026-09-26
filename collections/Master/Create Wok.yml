@@ -27,6 +27,7 @@ http:
         },
         "tenantId": "{{tenantId}}",
         "request": {
+          "workCode": "WC/2026/323",
           "workName": "Road Repair - Sector 14 Main Road",
           "workType": "Repair & Maintenance",
           "fundName": "Municipal Fund",
