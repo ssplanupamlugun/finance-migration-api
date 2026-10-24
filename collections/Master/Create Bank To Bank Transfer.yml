@@ -1,0 +1,58 @@
+info:
+  name: Create Bank To Bank Transfer
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{base_url}}/services/EGF/rest/bank-to-bank-transfer/create?auth_token={{auth_token}}&tenantId={{tenantId}}"
+  headers:
+    - name: ""
+      value: Content-Type
+      description: application/json
+  params:
+    - name: auth_token
+      value: "{{auth_token}}"
+      type: query
+    - name: tenantId
+      value: "{{tenantId}}"
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "RequestInfo": {
+          "apiId": "Finance Data Migration",
+          "action": "CREATE",
+          "authToken": "{{auth_token}}"
+        },
+        "tenantId": "{{tenantId}}",
+        "request": {
+          "voucherDate": "15/10/2026",
+          "fromFund": "Municipal Fund",
+          "fromSchemeName": null,
+          "fromDepartmentName": "Building Inspection Branch",
+          "functionName": "Water Supply",
+          "fromBankName": "State Bank of India",
+          "fromBankAccountNumber": "555555555555",
+          "toFund": "TEST FUND",
+          "toDepartmentName": "Administration",
+          "fromInterFundCode": "4702000001",
+          "toInterFundCode": "4702000001",
+          "toBankName": "State Bank of India",
+          "toBankAccountNumber": "222222222222",
+          "modeOfCollection": "RTGS/NEFT",
+          "referenceNumber": "NEFT202610150001",
+          "referenceDate": "15/10/2026",
+          "amount": 0.50,
+          "description": "Transfer of funds between bank accounts"
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
