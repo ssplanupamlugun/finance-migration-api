@@ -1,0 +1,119 @@
+info:
+  name: Create Bill Payment
+  type: http
+  seq: 10
+
+http:
+  method: POST
+  url: "{{base_url}}/services/EGF/rest/payment/create?auth_token={{auth_token}}&tenantId={{tenantId}}"
+  headers:
+    - name: ""
+      value: Content-Type
+      description: application/json
+  params:
+    - name: auth_token
+      value: "{{auth_token}}"
+      type: query
+    - name: tenantId
+      value: "{{tenantId}}"
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "RequestInfo": {
+          "apiId": "Finance Data Migration",
+          "action": "CREATE",
+          "authToken": "{{auth_token}}"
+        },
+        "tenantId": "{{tenantId}}",
+        "request": {
+          "paymentVoucherDate": "27/10/2026",
+          "fund": "Municipal Fund",
+          "function": "General Administration",
+          "department": "Account Branch",
+          "paymentMode": "cheque",
+          "bankName": "State Bank of India",
+          "bankBranchName": "Gurugram SBI",
+          "ifscCode": "SBIN0000691",
+          "bankAccountNumber": "555555555555",
+          "description": "cheque payments",
+          "bills": [
+            {
+              "billNumber": "DEPT_1/WBILL/0001/2026-27",
+              "paymentAmount": 9.00
+            },
+            {
+              "billNumber": "DEPT_1/EJV/0002/2026-27",
+              "paymentAmount": 2.00
+            }
+          ]
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: |
+  # Bill Payment Voucher API – Response Examples
+
+  ## 1. Success Response
+
+  **Status:** `SUCCESSFUL`
+
+  ```json
+  {
+    "responseInfo": {
+      "apiId": "Finance Data Migration",
+      "ver": null,
+      "ts": null,
+      "resMsgId": null,
+      "msgId": null,
+      "status": "SUCCESSFUL"
+    },
+    "success": true,
+    "message": "Payment voucher created successfully",
+    "timestamp": 1793079729852,
+    "data": {
+      "paymentVoucherId": 71,
+      "voucherNumber": "1/BPV/00000037/10/2026-27",
+      "message": "Payment created successfully"
+    }
+  }
+  ```
+
+  **Description:** The payment voucher was created successfully, and the response contains the generated payment voucher ID and voucher number.
+
+  ## 2. Error Response
+
+  **HTTP Status:** `400 Bad Request`
+
+  **Error:** `Bank account not found: 5555555535555`
+
+  ```json
+  {
+    "ResponseInfo": {
+      "apiId": null,
+      "ver": null,
+      "ts": "Tue Oct 27 11:17:02 IST 2026",
+      "resMsgId": null,
+      "msgId": null,
+      "status": "400"
+    },
+    "Errors": [
+      {
+        "code": "Bank account not found: 5555555535555",
+        "message": "Bank account not found: 5555555535555",
+        "description": "Bank account not found: 5555555535555",
+        "params": null
+      }
+    ]
+  }
+  ```
+
+  **Description:** The request failed because the specified bank account (`5555555535555`) could not be found in the system. Verify that the bank account exists and that the correct bank account identifier is provided in the request.
